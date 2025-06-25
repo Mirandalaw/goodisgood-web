@@ -1,0 +1,335 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Pretendard', sans-serif;
+    overflow: hidden;
+    background-color: #000;
+}
+body[data-theme="light"] {
+    background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    color: #111;
+}
+body[data-theme="dark"] {
+    background: radial-gradient(circle at top, #1e1e1e 0%, #0d0d0d 100%);
+    color: white;
+}
+
+.login-page-bg {
+    width: 100vw;
+    height: 100vh;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('/stars.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+.shooting-star {
+    position: absolute;
+    top: -40px;
+    width: 2px;
+    height: 80px;
+    background: linear-gradient(45deg, white, rgba(255, 255, 255, 0));
+    transform: rotate(45deg);
+    animation-name: shooting;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    opacity: 0.8;
+    z-index: 1;
+}
+@keyframes shooting {
+    0% {
+        transform: translate(0, 0) rotate(45deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(300px, 600px) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    max-width: 420px;
+    width: 100%;
+    box-shadow:
+            0 0 0 1px rgba(255, 255, 255, 0.06),
+            0 10px 40px rgba(0, 0, 0, 0.5),
+            inset 0 1px 2px rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+body[data-theme="light"] .login-card {
+    background: #fff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.login-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+body[data-theme="light"] .login-title {
+    color: #111;
+}
+
+.login-logo-circle {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+body[data-theme="light"] .login-logo-circle {
+    background: rgba(0, 0, 0, 0.05);
+}
+.login-logo-icon {
+    font-size: 20px;
+    color: white;
+}
+body[data-theme="light"] .login-logo-icon {
+    color: #111;
+}
+
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.login-form input {
+    padding: 0.9rem 1rem;
+    height: auto; /* 필요시 명시 */
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+.login-form input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+body[data-theme="light"] .login-form input {
+    background-color: #f9f9f9;
+    color: #111;
+    border: 1px solid #ccc;
+}
+body[data-theme="light"] .login-form input::placeholder {
+    color: #aaa;
+}
+
+.password-wrapper {
+    position: relative;
+}
+.toggle-password-btn {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+}
+body[data-theme="light"] .toggle-password-btn {
+    color: #555;
+}
+
+.login-btn {
+    padding: 0.9rem;
+    background: white;
+    color: #111;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+}
+body[data-theme="light"] .login-btn {
+    background: #111;
+    color: white;
+}
+
+.social-btn {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 14px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+}
+.social-btn.google {
+    background-color: white;
+    color: #111;
+    border: 1px solid #ddd;
+}
+.social-btn.google:hover {
+    background-color: #f0f0f0;
+}
+.social-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.error-message {
+    color: #f87171;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.login-footer {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 1.75rem;
+    text-align: center;
+}
+.login-footer a {
+    color: white;
+    font-weight: 500;
+}
+body[data-theme="light"] .login-footer {
+    color: #666;
+}
+body[data-theme="light"] .login-footer a {
+    color: #111;
+}
+
+.theme-toggle-wrapper {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+}
+.theme-toggle-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+body[data-theme="light"] .theme-toggle-btn {
+    background: #e5e5e5;
+    color: #111;
+}
+
+.social-btn.google.dark-style {
+    background: #111;
+    color: white;
+    border: 1px solid #333;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    padding-right: 2.75rem; /* 👁 아이콘 공간 확보 */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+body[data-theme='light'] .password-wrapper input {
+    background: #f9f9f9;
+    color: #111;
+    border: 1px solid #ccc;
+}
+
+.toggle-password-btn {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+}
+
+body[data-theme='light'] .toggle-password-btn {
+    color: #555;
+}
+
+/* 명확한 입력값 색상 지정 */
+body[data-theme='light'] .input-wrapper input {
+    background: #ffffff;
+    color: #111111; /* ✅ 진한 회색 또는 블랙 */
+    border: 1px solid #ccc;
+}
+
+/* placeholder 더 진하게 */
+body[data-theme='light'] .input-wrapper input::placeholder {
+    color: #666666; /* ✅ 연한 회색으로 충분한 대비 */
+}
+
+/* 로그인 버튼 반전 유지 */
+body[data-theme='light'] .login-btn {
+    background: #111;
+    color: #fff;
+}
+
+.social-btn.google.dark-style {
+    background: #111;
+    color: white;
+    border: 1px solid #333;
+}
+
+/* ✅ 라이트 모드에서 dark-style이면 흰 배경 안 씌우도록 덮어쓰기 */
+body[data-theme='light'] .social-btn.google.dark-style {
+    background: #f9f9f9;
+    color: #111;
+    border: 1px solid #ccc;
+}
+.login-extra-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+}
+
+.login-extra-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+}
+
+.login-extra-links a:hover {
+    text-decoration: underline;
+}
+
+body[data-theme="light"] .login-extra-links a {
+    color: #555;
+}

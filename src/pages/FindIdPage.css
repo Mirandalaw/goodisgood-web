@@ -1,0 +1,10 @@
+.found-id-message {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: #4ade80; /* green-400 */
+    text-align: center;
+}
+
+body[data-theme='light'] .found-id-message {
+    color: #2d8f3d;
+}

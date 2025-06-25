@@ -1,0 +1,130 @@
+.mypage-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100vw;
+    background-color: #fff;
+    color: #111;
+    overflow-x: hidden;
+}
+
+.mypage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #111;
+}
+
+.nav-menu a {
+    margin-left: 2rem;
+    text-decoration: none;
+    color: #111;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+}
+
+.nav-menu a:hover {
+    color: #ff4b2b;
+}
+
+.mypage-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem 2rem;
+    background: #f9f9f9;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.mypage-content {
+    max-width: 600px;
+    width: 100%;
+    background: #fff;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.mypage-content h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.mypage-content p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.mypage-info {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.info-item {
+    margin-bottom: 1rem;
+}
+
+.info-item strong {
+    display: inline-block;
+    width: 100px;
+    color: #333;
+}
+
+.info-item span {
+    color: #555;
+}
+
+.mypage-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    background-color: #111;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #333;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: #111;
+    border: 1px solid #111;
+}
+
+.btn-outline:hover {
+    background-color: #111;
+    color: #fff;
+}
+
+.mypage-footer {
+    text-align: center;
+    padding: 2rem 0;
+    background: #fff;
+    font-size: 0.875rem;
+    color: #aaa;
+    border-top: 1px solid #eee;
+    box-sizing: border-box;
+}
