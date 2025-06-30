@@ -1,33 +1,30 @@
-import axios from 'axios';
-
-const API = axios.create({
-    baseURL: 'http://localhost:3000/api/auth',
-    withCredentials: true,
-    headers: {
-        'Content-Type': 'application/json',
-    },
-});
+import API from './axios';
 
 export const login = (email: string, password: string) =>
-    API.post('/login', { email, password });
+    API.post('/auth/login', { email, password });
 
-export const register = (name: string, email: string, password: string, phone: string) =>
-    API.post('/register', { name, email, password, phone });
+export const register = (data: {
+    email: string;
+    password: string;
+    name: string;
+    phone: string;
+    agreedToPrivacyPolicy: boolean;
+}) => API.post('/auth/register', data);
 
 export const reissue = (refreshToken: string) =>
-    API.post('/reissue', { refreshToken });
+    API.post('/auth/reissue', { refreshToken });
 
 export const logout = (refreshToken: string) =>
-    API.post('/logout', { refreshToken });
+    API.post('/auth/logout', { refreshToken });
 
 export const findEmail = (name: string, phone: string) =>
-    API.post('/find-email', { name, phone });
+    API.post('/auth/find-email', { name, phone });
 
 export const sendResetCode = (email: string) =>
-    API.post('/send-reset-code', { email });
+    API.post('/auth/send-reset-code', { email });
 
 export const verifyResetCode = (email: string, code: string) =>
-    API.post('/verify-reset-code', { email, code });
+    API.post('/auth/verify-reset-code', { email, code });
 
 export const resetPassword = (email: string, code: string, newPassword: string) =>
-    API.post('/reset-password', { email, code, newPassword });
+    API.post('/auth/reset-password', { email, code, newPassword });

@@ -42,6 +42,18 @@ html, body {
     gap: 1.5rem;
 }
 
+.nav-menu ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+}
+
 .nav-menu a {
     text-decoration: none;
     color: #111;
