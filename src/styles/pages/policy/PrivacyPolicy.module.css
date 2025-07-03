@@ -1,0 +1,39 @@
+.container {
+    max-width: 720px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    color: #111;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    font-family: 'Pretendard', sans-serif;
+    line-height: 1.7;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+    list-style: disc;
+}
+
+.footer {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.footer a {
+    color: #333;
+    text-decoration: underline;
+}

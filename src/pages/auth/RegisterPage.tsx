@@ -4,9 +4,11 @@ import TermsAgreementForm from '../../features/auth/components/TermsAgreementFor
 import RegisterForm from '../../features/auth/components/RegisterForm';
 import { register, login } from '../../apis/auth';
 import '../../styles/pages/auth/RegisterPage.module.css';
+import {useAuthStore} from "../../stores/useAuthStore.ts";
 
 export default function RegisterPage() {
     const navigate = useNavigate();
+    const setAuth = useAuthStore((state)=>state.setAuth);
 
     const [step, setStep] = useState<1 | 2>(1);
     const [registerInfo, setRegisterInfo] = useState({
@@ -38,15 +40,33 @@ export default function RegisterPage() {
     };
 
     const handleRegister = async () => {
+        if (registerInfo.password.length < 6) {
+            alert('비밀번호는 6자 이상 입력해야 합니다.');
+            return;
+        }
+
         try {
+            // 1. 회원가입 요청
             await register(registerInfo);
-            const res = await login(registerInfo.email, registerInfo.password);
-            localStorage.setItem('accessToken', res.data.data.accessToken);
-            navigate('/me');
-        } catch (err: unknown) {
-            alert('회원가입 실패: ' + (err.response?.data?.message || '서버 오류'));
+
+            // 2. 회원가입 성공 시 → 자동 로그인 시도
+            const loginRes = await login(registerInfo.email, registerInfo.password);
+
+            // 3. AccessToken 저장
+            const accessToken = loginRes.data?.data?.tokens?.accessToken;
+            if (accessToken) {
+                setAuth(accessToken);
+                navigate('/home');
+            } else {
+                alert('로그인 응답에 accessToken이 없습니다.');
+            }
+
+        } catch (err: any) {
+            const message = err?.response?.data?.message || '서버 오류';
+            alert('회원가입 실패: ' + message);
         }
     };
+
 
     return (
         <div className="login-dribbble-wrapper">

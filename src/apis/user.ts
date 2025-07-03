@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const USER_API = axios.create({
     baseURL: 'http://localhost:3000/api/user',
-    withCredentials: true,
 });
 
 export const getMyProfile = () =>

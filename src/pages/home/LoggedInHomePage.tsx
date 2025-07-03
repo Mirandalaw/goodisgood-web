@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '../styles/pages/home/HomePage.css';
+import '../../styles/pages/home/HomePage.css';
+import {useAuthStore} from "../../stores/useAuthStore.ts";
 
 interface User {
     name: string;
@@ -11,34 +12,48 @@ interface User {
 export default function LoggedInHomePage() {
     const [user, setUser] = useState<User | null>(null);
     const navigate = useNavigate();
+    const {isLoggedIn, logout} = useAuthStore();
 
     useEffect(() => {
+        const accessToken = localStorage.getItem('accessToken');
+        if(!accessToken) {
+            alert('로그인이 필요합니다.');
+            navigate('/login');
+            return;
+        }
         const fetchUser = async () => {
             try {
                 const res = await axios.get('http://localhost:3000/api/user/me', {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+                        Authorization: `Bearer ${accessToken}`,
                     },
-                    withCredentials: true,
+                    // withCredentials: true,
                 });
+
                 setUser(res.data.data);
             } catch (err) {
-                alert('로그인이 필요합니다.');
+                console.error(err);
+                alert('로그인이 필요합니다.');;
+                logout();
                 navigate('/login');
             }
         };
         fetchUser();
-    }, [navigate]);
+    }, [isLoggedIn]);
 
     const handleLogout = async () => {
         try {
-            await axios.post('http://localhost:3000/api/auth/logout', {}, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-                },
-                withCredentials: true,
-            });
-            localStorage.removeItem('accessToken');
+            await axios.post(
+                'http://localhost:3000/api/auth/logout',
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+                    },
+                    // withCredentials: true,
+                }
+            );
+            logout();
             navigate('/');
         } catch (err) {
             alert('로그아웃 실패');
@@ -49,10 +64,14 @@ export default function LoggedInHomePage() {
         <div className="home-wrapper">
             <header className="home-header">
                 <div className="logo">GoodISGood</div>
-                <nav className="nav-menu">
-                    <Link to="/home">홈</Link>
-                    <Link to="/me">마이페이지</Link>
-                    <button onClick={handleLogout} className="logout-btn">로그아웃</button>
+                <nav className="nav-menu" aria-label="main navigation">
+                    <ul>
+                        <li><Link to="/home">홈</Link></li>
+                        <li><Link to="/me">마이페이지</Link></li>
+                        <li>
+                            <button onClick={handleLogout} className="logout-btn">로그아웃</button>
+                        </li>
+                    </ul>
                 </nav>
             </header>
 

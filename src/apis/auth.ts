@@ -1,15 +1,13 @@
 import API from './axios';
+import {RegisterRequest} from "../types/auth.ts";
 
-export const login = (email: string, password: string) =>
-    API.post('/auth/login', { email, password });
+export const login = async (email: string, password: string) => {
+    const { data } = await API.post('/auth/login', { email, password });
+    return data;
+};
 
-export const register = (data: {
-    email: string;
-    password: string;
-    name: string;
-    phone: string;
-    agreedToPrivacyPolicy: boolean;
-}) => API.post('/auth/register', data);
+export const register = (payload : RegisterRequest) =>
+    API.post('/auth/register',payload);
 
 export const reissue = (refreshToken: string) =>
     API.post('/auth/reissue', { refreshToken });
